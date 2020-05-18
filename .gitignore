@@ -1,3 +1,6 @@
 .idea
 *.iml
 target
+
+# for testing reasons
+output.json

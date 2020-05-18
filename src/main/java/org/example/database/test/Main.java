@@ -1,5 +1,10 @@
 package org.example.database.test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.database.test.dto.ErrorOutput;
+
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -7,10 +12,10 @@ import java.util.function.Consumer;
 
 public class Main {
     private static Consumer<CommandRunner> command;
-    private static Path inputPath;
-    private static Path outputPath;
+    private static File inputFile;
+    private static File outputFile;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         if (args.length > 0 && args[0].equals("help")) {
             System.out.println(getUsage());
             return;
@@ -21,12 +26,15 @@ public class Main {
         } catch (Exception e) {
             System.err.println(e.getMessage());
             System.err.println(getUsage());
+            return;
         }
 
         try {
-            command.accept(new CommandRunner(inputPath, outputPath));
+            command.accept(new CommandRunner(inputFile, outputFile));
         } catch (Exception e) {
-            e.printStackTrace();
+            ErrorOutput errorOutput = new ErrorOutput();
+            errorOutput.setMessage(e.getMessage());
+            new ObjectMapper().writeValue(outputFile, errorOutput);
         }
     }
 
@@ -53,13 +61,13 @@ public class Main {
         if (!Files.isRegularFile(input)) {
             throw new IllegalArgumentException("Input file does not exist");
         }
-        inputPath = input;
+        inputFile = input.toFile();
 
         Path output = Paths.get(args[2]);
         if (!Files.isRegularFile(output)) {
             throw new IllegalArgumentException("Output file does not exist");
         }
-        outputPath = output;
+        outputFile = output.toFile();
     }
 
     private static String getUsage() {
