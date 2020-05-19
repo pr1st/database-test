@@ -2,7 +2,7 @@ package org.example.database.test.dto;
 
 import lombok.Data;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 public class PurchaseDTO {
@@ -11,5 +11,5 @@ public class PurchaseDTO {
     @NotNull
     private String productName;
     @NotNull
-    private Date purchaseDate;
+    private LocalDate purchaseDate;
 }

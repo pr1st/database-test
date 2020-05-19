@@ -1,7 +1,7 @@
 package org.example.database.test.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -16,12 +16,12 @@ public class Purchase {
     @ManyToOne
     private Product product;
 
-    private Date purchaseDate;
+    private LocalDate purchaseDate;
 
     public Purchase() {
     }
 
-    public Purchase(Customer customer, Product product, Date purchaseDate) {
+    public Purchase(Customer customer, Product product, LocalDate purchaseDate) {
         this.customer = customer;
         this.product = product;
         this.purchaseDate = purchaseDate;
@@ -51,11 +51,11 @@ public class Purchase {
         this.product = product;
     }
 
-    public Date getPurchaseDate() {
+    public LocalDate getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(Date purchaseDate) {
+    public void setPurchaseDate(LocalDate purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 

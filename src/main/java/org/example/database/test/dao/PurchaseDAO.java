@@ -1,6 +1,5 @@
 package org.example.database.test.dao;
 
-import org.example.database.test.model.Product;
 import org.example.database.test.model.Purchase;
 
 import java.util.List;
