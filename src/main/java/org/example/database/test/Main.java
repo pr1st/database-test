@@ -32,15 +32,17 @@ public class Main {
         try {
             command.accept(new CommandRunner(inputFile, outputFile));
         } catch (Exception e) {
-            ErrorOutput errorOutput = new ErrorOutput();
-            errorOutput.setMessage(e.getMessage());
-            new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(outputFile, errorOutput);
+            if (outputFile != null) {
+                ErrorOutput errorOutput = new ErrorOutput();
+                errorOutput.setMessage(e.getMessage());
+                new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(outputFile, errorOutput);
+            }
             e.printStackTrace();
         }
     }
 
     private static void parseArgs(String[] args) {
-        if (args.length < 3) {
+        if (args.length < 3 && !(args.length == 2 && args[0].equals("add"))) {
             throw new IllegalArgumentException("Not enough args");
         }
 
@@ -63,6 +65,10 @@ public class Main {
             throw new IllegalArgumentException("Input file does not exist");
         }
         inputFile = input.toFile();
+
+        if (args.length == 2) {
+            return;
+        }
 
         Path output = Paths.get(args[2]);
         if (!Files.isRegularFile(output)) {
