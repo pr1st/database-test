@@ -2,6 +2,7 @@ package org.example.database.test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.SneakyThrows;
 import org.example.database.test.dto.CustomerDTO;
 import org.example.database.test.dto.command.input.AddCommandInput;
@@ -49,6 +50,7 @@ public class CommandRunner {
         SimpleModule module = new SimpleModule();
         module.addDeserializer(Criteria.class, new JsonCriteriaDeserializer());
         objectMapper.registerModule(module);
+        objectMapper.registerModule(new JavaTimeModule());
     }
 
     @SneakyThrows

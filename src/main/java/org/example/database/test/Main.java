@@ -35,6 +35,7 @@ public class Main {
             ErrorOutput errorOutput = new ErrorOutput();
             errorOutput.setMessage(e.getMessage());
             new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(outputFile, errorOutput);
+            e.printStackTrace();
         }
     }
 
