@@ -1,4 +1,4 @@
-package org.example.database.test.models;
+package org.example.database.test.model;
 
 import javax.persistence.*;
 import java.util.List;
