@@ -43,6 +43,10 @@
           "lastName": "Князев"
         },
         {
+          "firstName": "Лука",
+          "lastName": "Иванович"
+        },
+        {
           "firstName": "Ярослав",
           "lastName": "Петренко"
         },
@@ -53,10 +57,6 @@
         {
           "firstName": "Оскар",
           "lastName": "Сорокин"
-        },
-        {
-          "firstName": "Лука",
-          "lastName": "Иванович"
         }
       ]
     },

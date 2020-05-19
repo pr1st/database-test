@@ -1,14 +1,15 @@
 package org.example.database.test.dto.command.output;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
+import lombok.*;
+
 import java.util.List;
 
 @Data
 public class StatCommandOutput {
     @Data
-    private static class PurchaseResult {
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class PurchaseResult {
         private String name;
         private int expenses;
     }

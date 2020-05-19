@@ -1,0 +1,74 @@
+{
+  "type": "stat",
+  "totalDays": 2,
+  "customers": [
+    {
+      "name": "Афанасьев Ленар",
+      "purchases": [
+        {
+          "name": "Гречка",
+          "expenses": 2700
+        }
+      ],
+      "totalExpense": 2700
+    },
+    {
+      "name": "Петренко Ярослав",
+      "purchases": [
+        {
+          "name": "Гречка",
+          "expenses": 900
+        }
+      ],
+      "totalExpense": 900
+    },
+    {
+      "name": "Князев Лев",
+      "purchases": [
+        {
+          "name": "Удочка",
+          "expenses": 700
+        },
+        {
+          "name": "Хлеб",
+          "expenses": 300
+        }
+      ],
+      "totalExpense": 1000
+    },
+    {
+      "name": "Гелетей Дмитрий",
+      "purchases": [
+        {
+          "name": "Шоколад",
+          "expenses": 200
+        },
+        {
+          "name": "Макороны",
+          "expenses": 200
+        }
+      ],
+      "totalExpense": 400
+    },
+    {
+      "name": "Молчанов Кузьма",
+      "purchases": [
+        {
+          "name": "Мороженное",
+          "expenses": 800
+        },
+        {
+          "name": "Носки",
+          "expenses": 500
+        },
+        {
+          "name": "Хлеб",
+          "expenses": 300
+        }
+      ],
+      "totalExpense": 1600
+    }
+  ],
+  "totalExpenses": 6600,
+  "avgExpenses": 1320.0
+}

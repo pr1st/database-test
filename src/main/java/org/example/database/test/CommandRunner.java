@@ -66,9 +66,7 @@ public class CommandRunner {
     public void stat() {
         StatCommandInput input = objectMapper.readValue(inputFile, StatCommandInput.class);
         validationCheck(input);
-        StatCommandOutput output = new StatCommandOutput();
-
-        // todo construct output
+        StatCommandOutput output = customerService.getCustomerStatusWithInInterval(input);
 
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(outputFile, output);
     }

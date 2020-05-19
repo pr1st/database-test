@@ -2,11 +2,15 @@ package org.example.database.test.service;
 
 import org.example.database.test.dao.CustomerDAO;
 import org.example.database.test.dto.CustomerDTO;
+import org.example.database.test.dto.command.input.StatCommandInput;
 import org.example.database.test.dto.command.output.SearchCommandOutput;
 import org.example.database.test.dto.command.output.StatCommandOutput;
 import org.example.database.test.dto.criteria.*;
 import org.example.database.test.model.Customer;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,7 +46,7 @@ public class CustomerService implements AbstractService<Customer> {
     public SearchCommandOutput getCustomersByCriteria(List<Criteria> criterias) {
         List<SearchCommandOutput.Result> results = new ArrayList<>();
         customerDAO.startTransaction();
-        for (Criteria criteria: criterias) {
+        for (Criteria criteria : criterias) {
             SearchCommandOutput.Result result = new SearchCommandOutput.Result();
             result.setCriteria(criteria);
             List<Customer> customerResults;
@@ -66,6 +70,32 @@ public class CustomerService implements AbstractService<Customer> {
 
         SearchCommandOutput output = new SearchCommandOutput();
         output.setResults(results);
+        return output;
+    }
+
+    public StatCommandOutput getCustomerStatusWithInInterval(StatCommandInput input) {
+        List<LocalDate> workingDays = new ArrayList<>();
+        LocalDate currentDate = input.getStartDate();
+        while (!input.getEndDate().plusDays(1).equals(currentDate)) {
+            LocalDate finalCurrentDate = currentDate;
+            if (Stream.of(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY)
+                    .noneMatch(dof -> finalCurrentDate.getDayOfWeek().equals(dof))) {
+                workingDays.add(currentDate);
+            }
+            currentDate = currentDate.plusDays(1);
+        }
+        customerDAO.startTransaction();
+        List<StatCommandOutput.CustomerResult> statisticsForCustomers = customerDAO.getStatisticsForCustomers(workingDays);
+        customerDAO.endTransaction();
+
+        StatCommandOutput output = new StatCommandOutput();
+        output.setTotalDays(workingDays.size());
+        output.setCustomers(statisticsForCustomers);
+        Integer totalExpenses = statisticsForCustomers.stream()
+                .map(StatCommandOutput.CustomerResult::getTotalExpense)
+                .reduce(Integer::sum).orElse(0);
+        output.setTotalExpenses(totalExpenses);
+        output.setAvgExpenses((double) totalExpenses / statisticsForCustomers.size());
         return output;
     }
 }
