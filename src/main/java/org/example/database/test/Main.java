@@ -22,7 +22,6 @@ public class Main {
             return;
         }
 
-        Persistence.createEntityManagerFactory("Store");
         try {
             parseArgs(args);
         } catch (Exception e) {
@@ -84,7 +83,7 @@ public class Main {
     }
 
     private static String getUsage() {
-        return "Usage: java -jar program.jar command inputFile outputFile\n" +
+        return "Usage: java -cp ./lib/*;program.jar org.example.database.test.Main command inputFile outputFile\n" +
                 "available commands: help, add, search, stat";
     }
 }
