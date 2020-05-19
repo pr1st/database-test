@@ -1,0 +1,87 @@
+{
+  "type": "search",
+  "results": [
+    {
+      "criteria": {
+        "lastName": "Иванович"
+      },
+      "results": [
+        {
+          "firstName": "Иван",
+          "lastName": "Иванович"
+        },
+        {
+          "firstName": "Лука",
+          "lastName": "Иванович"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "productName": "Гречка",
+        "minTimes": 2
+      },
+      "results": [
+        {
+          "firstName": "Ленар",
+          "lastName": "Афанасьев"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "minExpenses": 200,
+        "maxExpenses": 3000
+      },
+      "results": [
+        {
+          "firstName": "Дмитрий",
+          "lastName": "Гелетей"
+        },
+        {
+          "firstName": "Лев",
+          "lastName": "Князев"
+        },
+        {
+          "firstName": "Ярослав",
+          "lastName": "Петренко"
+        },
+        {
+          "firstName": "Кузьма",
+          "lastName": "Молчанов"
+        },
+        {
+          "firstName": "Оскар",
+          "lastName": "Сорокин"
+        },
+        {
+          "firstName": "Лука",
+          "lastName": "Иванович"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "badCustomers": 4
+      },
+      "results": [
+        {
+          "firstName": "Глеб",
+          "lastName": "Тимофеев"
+        },
+        {
+          "firstName": "Вадим",
+          "lastName": "Буров"
+        },
+        {
+          "firstName": "Ярослав",
+          "lastName": "Петренко"
+        },
+        {
+          "firstName": "Лука",
+          "lastName": "Иванович"
+        }
+      ]
+    }
+  ]
+}

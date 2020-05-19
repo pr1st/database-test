@@ -9,5 +9,5 @@ public class ProductNameAndMinTimesCriteria implements Criteria {
     @NotNull
     private String productName;
     @Min(0)
-    private int minTimes;
+    private long minTimes;
 }

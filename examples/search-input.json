@@ -1,0 +1,18 @@
+{
+    "criterias": [
+        {
+            "lastName": "Иванович"
+        }, 
+        {
+            "productName": "Гречка",
+            "minTimes": 2
+        },
+        {
+            "minExpenses": 200,
+            "maxExpenses": 3000
+        },
+        {
+            "badCustomers": 4
+        }
+    ]
+}

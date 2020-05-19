@@ -56,10 +56,9 @@ public class CommandRunner {
         SearchCommandInput input = objectMapper.readValue(inputFile, SearchCommandInput.class);
         validationCheck(input);
         SearchCommandOutput output = new SearchCommandOutput();
+        output.setResults(customerService.getCustomersByCriteria(input.getCriterias()));
 
-        // todo construct output
-
-        objectMapper.writeValue(outputFile, output);
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(outputFile, output);
     }
 
     @SneakyThrows
@@ -70,7 +69,7 @@ public class CommandRunner {
 
         // todo construct output
 
-        objectMapper.writeValue(outputFile, output);
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(outputFile, output);
     }
 
     @SneakyThrows

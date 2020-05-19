@@ -34,7 +34,7 @@ public class Main {
         } catch (Exception e) {
             ErrorOutput errorOutput = new ErrorOutput();
             errorOutput.setMessage(e.getMessage());
-            new ObjectMapper().writeValue(outputFile, errorOutput);
+            new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(outputFile, errorOutput);
         }
     }
 
