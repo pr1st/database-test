@@ -3,6 +3,7 @@ package org.example.database.test.service;
 import org.example.database.test.dao.CustomerDAO;
 import org.example.database.test.dto.CustomerDTO;
 import org.example.database.test.dto.command.output.SearchCommandOutput;
+import org.example.database.test.dto.command.output.StatCommandOutput;
 import org.example.database.test.dto.criteria.*;
 import org.example.database.test.model.Customer;
 
@@ -38,9 +39,9 @@ public class CustomerService implements AbstractService<Customer> {
         return found;
     }
 
-    public List<SearchCommandOutput.Result> getCustomersByCriteria(List<Criteria> criterias) {
-        customerDAO.startTransaction();
+    public SearchCommandOutput getCustomersByCriteria(List<Criteria> criterias) {
         List<SearchCommandOutput.Result> results = new ArrayList<>();
+        customerDAO.startTransaction();
         for (Criteria criteria: criterias) {
             SearchCommandOutput.Result result = new SearchCommandOutput.Result();
             result.setCriteria(criteria);
@@ -61,8 +62,10 @@ public class CustomerService implements AbstractService<Customer> {
                     .collect(Collectors.toList()));
             results.add(result);
         }
-
         customerDAO.endTransaction();
-        return results;
+
+        SearchCommandOutput output = new SearchCommandOutput();
+        output.setResults(results);
+        return output;
     }
 }

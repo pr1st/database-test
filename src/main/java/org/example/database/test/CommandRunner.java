@@ -55,8 +55,7 @@ public class CommandRunner {
     public void search() {
         SearchCommandInput input = objectMapper.readValue(inputFile, SearchCommandInput.class);
         validationCheck(input);
-        SearchCommandOutput output = new SearchCommandOutput();
-        output.setResults(customerService.getCustomersByCriteria(input.getCriterias()));
+        SearchCommandOutput output = customerService.getCustomersByCriteria(input.getCriterias());
 
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(outputFile, output);
     }
