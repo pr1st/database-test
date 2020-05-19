@@ -3,6 +3,7 @@ package org.example.database.test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.database.test.dto.ErrorOutput;
 
+import javax.persistence.Persistence;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,6 +22,7 @@ public class Main {
             return;
         }
 
+        Persistence.createEntityManagerFactory("Store");
         try {
             parseArgs(args);
         } catch (Exception e) {
@@ -41,7 +43,7 @@ public class Main {
         }
     }
 
-    private static void parseArgs(String[] args) {
+    private static void parseArgs(String[] args) throws IOException {
         if (args.length < 3 && !(args.length == 2 && args[0].equals("add"))) {
             throw new IllegalArgumentException("Not enough args");
         }
@@ -72,7 +74,11 @@ public class Main {
 
         Path output = Paths.get(args[2]);
         if (!Files.isRegularFile(output)) {
-            throw new IllegalArgumentException("Output file does not exist");
+            if (Files.exists(output)) {
+                throw new IllegalArgumentException("Output file exists but is not regular file");
+            } else {
+                Files.createFile(output);
+            }
         }
         outputFile = output.toFile();
     }
